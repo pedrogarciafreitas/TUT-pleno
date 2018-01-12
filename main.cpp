@@ -28,7 +28,7 @@
 #include "vptd.h"
 #include "svpd.h"
 
-#include "omp.h"
+//#include "omp.h"
 
 int main(int argc, char** argv) {
 
@@ -52,7 +52,7 @@ int main(int argc, char** argv) {
 	const char x265_decoder_path[] = "C:/Local/astolap/Data/JPEG_PLENO/05_Software/x265/TAppDecoder.exe";
 	const char ffmpeg_path[] = "C:/Local/astolap/Data/JPEG_PLENO/05_Software/ffmpeg/bin/ffmpeg.exe";
 
-	omp_set_num_threads(6);
+	//omp_set_num_threads(6);
 
 	if (encode) {
 
@@ -84,7 +84,6 @@ int main(int argc, char** argv) {
 
 		/*Calls cerv for the depth map.*/
 		dise_encode_depth_map(filename_depth);
-
 
 		double bppDM = (double)aux_GetFileSize("bs_segm.bin")*8.0 / (double)num_pixels_in_lenslet;
 		double bppPred = ((double)nvr*(double)nvc*(double)maxiS)*(19.0*(double)Ms + 3.0) / (double)num_pixels_in_lenslet;
@@ -119,6 +118,7 @@ int main(int argc, char** argv) {
 		PRMA nviews*maxiS*63*/
 		vpts(Ms);
 
+		/* disable for design */
 		// Encode PRCO
 		ptce_encode_predictor_coefficients();
 		// Encode PRMA
@@ -136,6 +136,7 @@ int main(int argc, char** argv) {
 
 		disd();
 
+		/* disable for design */
 		ptcd_decode_predictor_mask();
 		ptcd_decode_predictor_coefficients();
 

@@ -318,7 +318,7 @@ void CC_WarpAllEncoder4Part1(int SEGgamma[], int Neigh9_165[], int hatLFgamma[],
                                 // printf(" Enc4 nn1 iview [%d][%d] \n", nn1,iview);
                                 for (iT=0; iT<7;iT++)
                                 {
-                                    if(MIr%2 == 1)
+									if (MIr % 2 == 1) /* should this be if (1) ?*/
                                     {
                                         MIr1 = MIr + hexag_even_R1[iT];
                                         MIc1 = MIc + hexag_even_C1[iT];
