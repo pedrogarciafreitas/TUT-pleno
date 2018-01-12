@@ -150,10 +150,8 @@
     <ClInclude Include="..\hevcrvd.h" />
     <ClInclude Include="..\hevcrve.h" />
     <ClInclude Include="..\input_parser.hh" />
-    <ClInclude Include="..\jp2_wrapper.h" />
     <ClInclude Include="..\ptcd.h" />
     <ClInclude Include="..\ptce.h" />
-    <ClInclude Include="..\srvd.h" />
     <ClInclude Include="..\srvd_saved.h" />
     <ClInclude Include="..\srve.h" />
     <ClInclude Include="..\svap.h" />
@@ -169,18 +167,19 @@
     <ClCompile Include="..\golomb_coder.cpp" />
     <ClCompile Include="..\hevcrvd.cpp" />
     <ClCompile Include="..\hevcrve.cpp" />
-    <ClCompile Include="..\jp2_start.cpp" />
-    <ClCompile Include="..\jp2_wrapper.cpp" />
     <ClCompile Include="..\main.cpp" />
     <ClCompile Include="..\ptcd.cpp" />
     <ClCompile Include="..\ptce.cpp" />
-    <ClCompile Include="..\srvd.cpp" />
     <ClCompile Include="..\srvd_saved.cpp" />
-    <ClCompile Include="..\srve.cpp" />
     <ClCompile Include="..\svap.cpp" />
     <ClCompile Include="..\svpd.cpp" />
     <ClCompile Include="..\vptd.cpp" />
     <ClCompile Include="..\vpts.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\cerv\CERV.vcxproj">
+      <Project>{d0530e85-2584-48e1-a0cf-32c38b746b12}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

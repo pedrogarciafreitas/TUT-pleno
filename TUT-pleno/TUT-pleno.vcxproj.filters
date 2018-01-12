@@ -15,16 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\jp2_wrapper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\ptcd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\ptce.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\srvd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\srvd_saved.h">
@@ -83,13 +77,7 @@
     <ClCompile Include="..\ptce.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\srvd.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\srvd_saved.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\srve.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\svap.cpp">
@@ -123,12 +111,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\hevcrve.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\jp2_start.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\jp2_wrapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

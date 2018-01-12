@@ -23,7 +23,7 @@
 #include "vpts.h"
 #include "ptce.h"
 #include "disd.h"
-#include "srvd.h"
+//#include "srvd.h"
 #include "ptcd.h"
 #include "vptd.h"
 #include "svpd.h"
@@ -118,11 +118,12 @@ int main(int argc, char** argv) {
 		PRMA nviews*maxiS*63*/
 		vpts(Ms);
 
-		/* disable for design */
+		/* disable for design 
 		// Encode PRCO
 		ptce_encode_predictor_coefficients();
 		// Encode PRMA
 		ptce_encode_predictor_mask();
+		*/
 
 		// Decoding.
 
@@ -136,9 +137,10 @@ int main(int argc, char** argv) {
 
 		disd();
 
-		/* disable for design */
+		/* disable for design 
 		ptcd_decode_predictor_mask();
 		ptcd_decode_predictor_coefficients();
+		*/
 
 		//char infile[] = "f_hatLI.jp2";
 		//char infile2[] = "f_hatLIs.jp2";

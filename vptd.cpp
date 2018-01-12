@@ -107,7 +107,7 @@ static void CC_WarpAllEncoder4Part2(int SEGgamma[], int Neigh9_165[], int hatLFg
                                     if( found_it == 1 )
                                     {
                                         // multiply the regressor by PredTheta0[idone]
-                                        if(MIr%2 == 1)
+                                        if(1)//(MIr%2 == 1)
                                         {
                                             MIr1 = MIr + hexag_even_R1[iT];
                                             MIc1 = MIc + hexag_even_C1[iT];

@@ -57,7 +57,7 @@ static void CC_CreateStructForSegmentPart2(int SEGgamma[], int SEGMFINAL[], int 
             {
                 for (MIc=0; MIc<(nc); MIc++)	// (MIc=0; MIc<nc;MIc++)
                 {
-                    if(MIr%2 == 1)
+                    if (1)//(MIr%2 == 1)
                     {
                         MIr1 = MIr + hexag_even_R_const[iT];
                         MIc1 = MIc + hexag_even_C_const[iT];
