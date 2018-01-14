@@ -32,7 +32,7 @@
 
 int main(int argc, char** argv) {
 
-	int encode = 1;
+	int encode = 0;
 
 	const char* filename_depth = argv[4]; // depth map. the indexing of regions should start from 1.
 	const char* filepath_orig = argv[5];
@@ -56,7 +56,7 @@ int main(int argc, char** argv) {
 
 	if (encode) {
 
-		std::cout << "aaaa\n";
+		//std::cout << "aaaa\n";
 
 		double bitrate = atof(argv[2]);
 		int Ms = atof(argv[3]); // prediction order.
