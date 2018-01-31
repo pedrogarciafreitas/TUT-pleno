@@ -107,7 +107,7 @@ static void CC_WarpAllEncoder4Part2(int SEGgamma[], int Neigh9_165[], int hatLFg
                                     if( found_it == 1 )
                                     {
                                         // multiply the regressor by PredTheta0[idone]
-                                        if(1)//(MIr%2 == 1)
+                                        if(MIr%2 == 1)
                                         {
                                             MIr1 = MIr + hexag_even_R1[iT];
                                             MIc1 = MIc + hexag_even_C1[iT];
@@ -166,8 +166,8 @@ static void CC_WarpAllEncoder4Part2(int SEGgamma[], int Neigh9_165[], int hatLFg
         free(PredRegr0);
     if(PredTheta0 != NULL)
         free(PredTheta0);
-    //if(Pred_ThetaW1 != NULL)
-    //    free(Pred_ThetaW1);
+    if(Pred_ThetaW1 != NULL)
+        free(Pred_ThetaW1);
     if(ycrt != NULL)
         free(ycrt);
     

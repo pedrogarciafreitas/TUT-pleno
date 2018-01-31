@@ -117,7 +117,7 @@ inline void aux_read16ppm(FILE *filept, int width, int height, int *img){
 
 	unsigned short int *Image16bit = NULL;
 
-	//FILE* filept = fopen("007_007.ppm", "r");
+	//FILE* filept = fopen("007_007.ppm", "rb");
 	/*--< Read header information of 16bit ppm image from filept >--*/
 	fscanf(filept, "%s", dummy);
 	fscanf(filept, "%d %d\n", &width, &height);
@@ -198,7 +198,7 @@ inline void aux_read16ppm(FILE *filept, int width, int height, int *img){
 //    
 //    unsigned short int *Image16bit=NULL;
 //    
-//    //FILE* filept = fopen("007_007.ppm", "r");
+//    //FILE* filept = fopen("007_007.ppm", "rb");
 //    /*--< Read header information of 16bit ppm image from filept >--*/
 //    fscanf(filept, "%s", dummy);
 //    fscanf(filept, "%d %d\n", &width, &height);

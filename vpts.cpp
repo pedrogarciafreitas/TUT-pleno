@@ -153,26 +153,9 @@ int FastOLS(double PHI[], double PSI[], double yd2, int PredRegr0[], double Pred
      //printf("pred FASTOLS [%f][%f][%f][%f][%f][%f]\n",PredTheta0[0], PredTheta0[1], PredTheta0[2], PredTheta0[3], PredTheta0[4], PredTheta0[5]);
     // printf("pred [%d][%d][%d][%d][%d]\n",PredRegr0[0], PredRegr0[1], PredRegr0[2], PredRegr0[3], PredRegr0[4] );
     
-	if (PredTheta0[0] != PredTheta0[0])
-	{// if is nan
-		printf("PredTheta0[0]  is NaN\n");
-		PredTheta0[0] = 1.0;
-		for (i = 1; i < Ms; i++)
-		{
-			PredTheta0[i] = 0.0;
-		}
-	}
-
     sabsval = 0;
     for( i=0; i<Ms; i++ )
     {
-
-		if (PredTheta0[i] != PredTheta0[i])
-		{// if is nan
-			PredTheta0[i] = 0.0;
-			printf("PredTheta0[%i]  is NaN\n",i);
-		}
-
         if(PredTheta0[i] > 0)
             sabsval = sabsval + PredTheta0[i];
         else
@@ -183,20 +166,8 @@ int FastOLS(double PHI[], double PSI[], double yd2, int PredRegr0[], double Pred
     {
         PredTheta0[0] = C[0+MT*M];//g[0] = C[0,MT];
         
-		//PredTheta0[0] = 1;
-
-		if (PredTheta0[0] != PredTheta0[0])
-		{// if is nan
-			printf("C[0+MT*M]  is NaN\n", i);
-			PredTheta0[0] = 1.0;
-		}
-
-		// fix ???
-		//if (abs(PredTheta0[0]) > 100)
-			//PredTheta0[0] = PredTheta0[0] / abs(PredTheta0[0]);
-
         for( i=1; i<Ms; i++ ) {
-            PredTheta0[i]  = 0.0;
+            PredTheta0[i]  = 0;
         }
         
         i = 1;
@@ -240,7 +211,7 @@ void CC_WarpAllEncoder4Part1(int SEGgamma[], int Neigh9_165[], int hatLFgamma[],
     
     int hexag_even_R1[7] = { -1, -1, 0, 0, 0,  1, 1 };
     int hexag_even_C1[7] = {  0, 1, -1, 0, 1,  0, 1 };
-     int hexag_odd_C1[7] = {  0, 1, -1, 0, 1,  0, 1 };
+    int hexag_odd_C1[7] = {  0, 1, -1, 0, 1,  0, 1 };
 //    int hexag_odd_C1[7]  = { -1, 0, -1, 0, 1, -1, 0 };
     
     int *PredRegr0,  mTheta, MT;
@@ -254,7 +225,7 @@ void CC_WarpAllEncoder4Part1(int SEGgamma[], int Neigh9_165[], int hatLFgamma[],
     PSI= alocaDoubleVector((int)63);
     PHIdiag= alocaDoubleVector((int)63);
     PredTheta0= alocaDoubleVector((int)63);
-    PredRegr0= alocaVector((int)63);
+    PredRegr0 = alocaVector((int)63);
     hatLFgamma2 = alocaVector((int)nviews*nr*nc*3);
     ycrt = alocaDoubleVector((int)3);
     
@@ -318,7 +289,7 @@ void CC_WarpAllEncoder4Part1(int SEGgamma[], int Neigh9_165[], int hatLFgamma[],
                                 // printf(" Enc4 nn1 iview [%d][%d] \n", nn1,iview);
                                 for (iT=0; iT<7;iT++)
                                 {
-									if (1)//(MIr % 2 == 1) /* should this be if (1) ?*/
+                                    if(MIr%2 == 1)
                                     {
                                         MIr1 = MIr + hexag_even_R1[iT];
                                         MIc1 = MIc + hexag_even_C1[iT];
@@ -375,7 +346,7 @@ void CC_WarpAllEncoder4Part1(int SEGgamma[], int Neigh9_165[], int hatLFgamma[],
 
                 if( (Mtrue>0) && (Mtrue<=Ms))
                 {
-                    for( i=0; i<Ms;i++ )
+                    for( i=0; i<Mtrue;i++ )
                     {
                         Pred_RegW[iview+nviews*(iR+maxiS*i)] = PredRegr0[i];// Pred_RegW[iview, iR, i] = PredRegr[i];
                         Pred_ThetaW[iview+nviews*(iR+maxiS*i)] = PredTheta0[i];
@@ -439,7 +410,7 @@ void CC_WarpAllEncoder4Part1(int SEGgamma[], int Neigh9_165[], int hatLFgamma[],
                                     if( found_it == 1 )
                                     {
                                         // multiply the regressor by PredTheta0[idone]
-                                        if( 1 ) //(MIr%2 == 1)
+                                        if(MIr%2 == 1)
                                         {
                                             MIr1 = MIr + hexag_even_R1[iT];
                                             MIc1 = MIc + hexag_even_C1[iT];
@@ -466,10 +437,6 @@ void CC_WarpAllEncoder4Part1(int SEGgamma[], int Neigh9_165[], int hatLFgamma[],
                         {
                             in = ((icomp*nc+MIc)*nr+MIr)*nviews+iview;
                             hatLFgamma2[in]= (int)ycrt[icomp]; // LFgamma(iview,MIr,MIc,icomp)
-							if (hatLFgamma2[in]>1023)
-								hatLFgamma2[in] = 1023;
-							if (hatLFgamma2[in] < 0)
-								hatLFgamma2[in] = 0;
                         }
                         //printf("did it 5\n");
                     } // if( SEGMFINAL[MIr+MIc*nr] == (iR+1) )
@@ -587,13 +554,14 @@ void vpts(int Ms) {
     for(int i = 0; i < nviews*9; ++i ) {
         Neigh9_165[i] = Neigh9_165p_const[i];
     }
-
-	time_t begin = clock();
-	CC_WarpAllEncoder4Part1(SEGgamma, Neigh9_165, hatLFgamma, LFgamma, Pred_RegW, Pred_ThetaW, maxiS, Ms);
-	time_t end = clock();
-	double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-	printf("Elapsed time for WarpAllEncoder4Part1: %f\n", elapsed_secs);
-  
+    
+    time_t begin = clock();
+    CC_WarpAllEncoder4Part1( SEGgamma, Neigh9_165, hatLFgamma, LFgamma, Pred_RegW, Pred_ThetaW, maxiS, Ms);
+    time_t end = clock();
+    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+    printf("Elapsed time for WarpAllEncoder4Part1: %f\n", elapsed_secs);
+    
+    
     FILE* f_Pred_RegW = fopen ( "PRMA" , "wb" );
     fwrite( &nviews, sizeof(int), 1, f_Pred_RegW);
     fwrite( &maxiS ,sizeof(int),1,f_Pred_RegW);
@@ -604,8 +572,6 @@ void vpts(int Ms) {
     
     for (int i=0; i<nviews*63*maxiS; i++) {
         IntPred_ThetaW[i] = (int) (Pred_ThetaW[i]* pow((double)2,12));
-		if (abs(IntPred_ThetaW[i])>100)
-			printf("[%i] %i\n", i, IntPred_ThetaW[i]);
     }
     FILE* f_Pred_ThetaW = fopen ( "PRCO" , "wb" );
     fwrite( &nviews, sizeof(int), 1, f_Pred_RegW);

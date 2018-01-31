@@ -32,7 +32,7 @@
 
 int main(int argc, char** argv) {
 
-	int encode = 0;
+	int encode = 1;
 
 	const char* filename_depth = argv[4]; // depth map. the indexing of regions should start from 1.
 	const char* filepath_orig = argv[5];
@@ -85,6 +85,8 @@ int main(int argc, char** argv) {
 		/*Calls cerv for the depth map.*/
 		dise_encode_depth_map(filename_depth);
 
+		//exit(0);
+
 		double bppDM = (double)aux_GetFileSize("bs_segm.bin")*8.0 / (double)num_pixels_in_lenslet;
 		double bppPred = ((double)nvr*(double)nvc*(double)maxiS)*(19.0*(double)Ms + 3.0) / (double)num_pixels_in_lenslet;
 		double bit_budget = (bitrate - bppDM - bppPred - 0.0004)*(double)num_pixels_in_lenslet;
@@ -118,12 +120,10 @@ int main(int argc, char** argv) {
 		PRMA nviews*maxiS*63*/
 		vpts(Ms);
 
-		/* disable for design 
 		// Encode PRCO
-		ptce_encode_predictor_coefficients();
+		//ptce_encode_predictor_coefficients();
 		// Encode PRMA
-		ptce_encode_predictor_mask();
-		*/
+		//ptce_encode_predictor_mask();
 
 		// Decoding.
 
@@ -132,15 +132,17 @@ int main(int argc, char** argv) {
 	}
 	else {
 
-		disd_decode_depth_map();
-		disd_decode_displacements();
+		if (0){
+			disd_decode_depth_map();
+			disd_decode_displacements();
 
-		disd();
+			disd();
+		}
 
-		/* disable for design 
-		ptcd_decode_predictor_mask();
-		ptcd_decode_predictor_coefficients();
-		*/
+
+		//ptcd_decode_predictor_mask();
+		//ptcd_decode_predictor_coefficients();
+		
 
 		//char infile[] = "f_hatLI.jp2";
 		//char infile2[] = "f_hatLIs.jp2";
